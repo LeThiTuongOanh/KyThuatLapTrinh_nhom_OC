@@ -107,6 +107,19 @@ int tongBien(int matrix[][MAX_COL], int m, int n) {
 	return tong;
 }
 
+// Hàm đếm tần suất xuất hiện của 1 giá trị x trong ma trận
+int demGiaTriXuatHien(int matrix[][MAX_COL], int m, int n, int x) {
+	int dem = 0;
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			if (matrix[i][j] == x) {
+				dem++;
+			}
+		}
+	}
+	return dem;
+}
+
 int main() {
 	int matrix[MAX_ROW][MAX_COL];
 	
@@ -153,6 +166,15 @@ int main() {
 		case 5:
 			printf("Tong cac gia tri nam tren bien cua ma tran: %d\n", tongBien(matrix, 3,3));
 			break;
+		case 6:
+		{
+			int x;
+			printf("Nhap gia tri x de dem so lan xuat hien: ");
+			scanf_s("%d", &x);
+			printf("Gia tri %d xuat hien %d lan.\n", x, demGiaTriXuatHien(matrix,3, 3, x));
+		}
+		break;
+
 		default:
 			printf("Lua chon khong hop le!\n");
 			break;
