@@ -89,6 +89,13 @@ PhanSo tinhTich(PhanSo ds[], int n) {
 	}
 	return tich;
 }
+
+void xuatNghichDao(PhanSo ds[], int n) {
+	for (int i = 0; i < n; i++) {
+		printf("%d/%d ", ds[i].mau, ds[i].tu);
+	}
+	printf("\n");
+}
 int main() {
 	int n;
 	PhanSo ds[50];
@@ -154,6 +161,10 @@ int main() {
 			else {
 				printf("Danh sach rong.\n");
 			}
+			break;
+		case 7:
+			printf("Danh sach nghich dao cac phan so: ");
+			xuatNghichDao(ds, n);
 			break;
 
 	
