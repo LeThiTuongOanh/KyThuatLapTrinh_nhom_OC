@@ -57,6 +57,18 @@ int binarySearch(int arr[], int n, int x) {
 	return -1;
 }
 
+void demChanLe(int a[], int n) {
+	int chan = 0, le = 0;
+	for (int i = 0; i < n; i++) {
+		if (a[i] % 2 == 0)
+			chan++;
+		else
+			le++;
+	}
+	printf("\nSo phan tu chan la: %d\n", chan);
+	printf("So phan tu le la: %d\n", le);
+}
+
 void menu() {
 	printf("\n--- Menu ---\n");
 	printf("0. Bai 1 Tim cac so x trong day so\n\t 7	9	13	17	27	30	31	35	38	40.\n");
@@ -121,7 +133,9 @@ int main() {
 		case 4:
 			printf("Gia tri min: %d\n", timMin(a, n));
 			break;
-		
+		case 5:
+			demChanLe(a, n);
+			break;
 		case 12:
 			printf("Thoat chuong trinh.\n");
 			break;
