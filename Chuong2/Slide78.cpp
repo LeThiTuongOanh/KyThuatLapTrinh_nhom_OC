@@ -119,6 +119,47 @@ int demGiaTriXuatHien(int matrix[][MAX_COL], int m, int n, int x) {
 	}
 	return dem;
 }
+// Hàm kiểm tra số nguyên tố
+bool laSoNguyenTo(int num) {
+	if (num <= 1) return false;
+	if (num == 2) return true;
+	if (num % 2 == 0) return false;
+	for (int i = 3; i <= sqrt((float)num); i += 2) {
+		if (num % i == 0) return false;
+	}
+	return true;
+}
+
+// Hàm đếm số lượng các phần tử là số chẵn, số lẻ, số âm, số dương, số nguyên tố
+void demSoLuongPhanTu(int matrix[][MAX_COL], int m, int n) {
+	int soChan = 0, soLe = 0, soAm = 0, soDuong = 0, soNguyenTo = 0;
+
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			if (matrix[i][j] % 2 == 0) {
+				soChan++;
+			}
+			else {
+				soLe++;
+			}
+			if (matrix[i][j] < 0) {
+				soAm++;
+			}
+			else if (matrix[i][j] > 0) {
+				soDuong++;
+			}
+			if (laSoNguyenTo(matrix[i][j])) {
+				soNguyenTo++;
+			}
+		}
+	}
+
+	printf("So luong so chan: %d\n", soChan);
+	printf("So luong so le: %d\n", soLe);
+	printf("So luong so am: %d\n", soAm);
+	printf("So luong so duong: %d\n", soDuong);
+	printf("So luong so nguyen to: %d\n", soNguyenTo);
+}
 
 int main() {
 	int matrix[MAX_ROW][MAX_COL];
@@ -174,7 +215,9 @@ int main() {
 			printf("Gia tri %d xuat hien %d lan.\n", x, demGiaTriXuatHien(matrix,3, 3, x));
 		}
 		break;
-
+		case 7:
+			demSoLuongPhanTu(matrix, 3, 3);
+			break;
 		default:
 			printf("Lua chon khong hop le!\n");
 			break;
