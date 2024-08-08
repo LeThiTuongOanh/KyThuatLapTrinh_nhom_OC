@@ -144,7 +144,25 @@ float tinh_diem_trung_binh(SinhVien ds[], int n) {
 
 	return tong_diem / n;
 }
+// Hàm ghi dữ liệu vào file
+void ghi_vao_file(SinhVien ds[], int n, const char* ten_file) {
+	FILE* file;
+	fopen_s(&file, ten_file, "w+");
 
+	if (file == NULL) {
+		printf("Khong mo duoc file de ghi.\n");
+		return;
+	}
+
+	for (int i = 0; i < n; i++) {
+		fprintf(file, "%d\t%s\t%s\t%.2f\t%.2f\t%.2f\n",
+			ds[i].stt, ds[i].ma_so_sv, ds[i].ho_ten,
+			ds[i].diem_tieu_luan, ds[i].diem_thi, ds[i].diem_tong_ket);
+	}
+
+	fclose(file);
+	printf("Da ghi du lieu vao file %s.\n", ten_file);
+}
 int main() {
 	SinhVien ds[MAX_STUDENTS];
 	int n, lua_chon;
@@ -184,6 +202,9 @@ int main() {
 			break;
 		case 8:
 			printf("Diem trung binh cua tat ca sinh vien: %.2f\n", tinh_diem_trung_binh(ds, n));
+			break;
+		case 9:
+			ghi_vao_file(ds, n, "danh_sach_sv.txt");
 			break;
 		case 0:
 			printf("Thoat chuong trinh.\n");
