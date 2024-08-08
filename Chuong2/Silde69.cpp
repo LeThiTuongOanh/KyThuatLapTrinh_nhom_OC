@@ -57,6 +57,38 @@ PhanSo timPhanSoMin(PhanSo ds[], int n) {
 	}
 	return min;
 }
+
+PhanSo tongPS(PhanSo ps1, PhanSo ps2) {
+	PhanSo ketqua;
+	ketqua.tu = ps1.tu * ps2.mau + ps2.tu * ps1.mau;
+	ketqua.mau = ps1.mau * ps2.mau;
+	rutGon(&ketqua);
+	return ketqua;
+}
+
+PhanSo tichPS(PhanSo ps1, PhanSo ps2) {
+	PhanSo ketqua;
+	ketqua.tu = ps1.tu * ps2.tu;
+	ketqua.mau = ps1.mau * ps2.mau;
+	rutGon(&ketqua);
+	return ketqua;
+}
+
+PhanSo tinhTong(PhanSo ds[], int n) {
+	PhanSo tong = ds[0];
+	for (int i = 1; i < n; i++) {
+		tong = tongPS(tong, ds[i]);
+	}
+	return tong;
+}
+
+PhanSo tinhTich(PhanSo ds[], int n) {
+	PhanSo tich = ds[0];
+	for (int i = 1; i < n; i++) {
+		tich = tichPS(tich, ds[i]);
+	}
+	return tich;
+}
 int main() {
 	int n;
 	PhanSo ds[50];
@@ -112,6 +144,19 @@ int main() {
 				printf("Danh sach rong.\n");
 			}
 			break;
+		case 5:
+			if (n > 0) {
+				PhanSo tong = tinhTong(ds, n);
+				PhanSo tich = tinhTich(ds, n);
+				printf("Tong cac phan so: %d/%d\n", tong.tu, tong.mau);
+				printf("Tich cac phan so: %d/%d\n", tich.tu, tich.mau);
+			}
+			else {
+				printf("Danh sach rong.\n");
+			}
+			break;
+
+	
 		case 0:
 			printf("Thoat chuong trinh.\n");
 			break;
