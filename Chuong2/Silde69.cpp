@@ -38,6 +38,16 @@ float giaTri(PhanSo ps) {
 	return (float)ps.tu / ps.mau;
 }
 
+
+PhanSo timPhanSoMax(PhanSo ds[], int n) {
+	PhanSo max = ds[0];
+	for (int i = 1; i < n; i++) {
+		if (giaTri(ds[i]) > giaTri(max)) {
+			max = ds[i];
+		}
+	}
+	return max;
+}
 int main() {
 	int n;
 	PhanSo ds[50];
@@ -73,6 +83,15 @@ int main() {
 		case 2:
 			printf("Danh sach phan so: ");
 			xuatDanhSachPhanSo(ds, n);
+			break;
+		case 3:
+			if (n > 0) {
+				PhanSo max = timPhanSoMax(ds, n);
+				printf("Phan so lon nhat: %d/%d\n", max.tu, max.mau);
+			}
+			else {
+				printf("Danh sach rong.\n");
+			}
 			break;
 
 		
