@@ -69,6 +69,16 @@ void demChanLe(int a[], int n) {
 	printf("So phan tu le la: %d\n", le);
 }
 
+
+int timKiemTuyenTinh(int a[], int n, int x) {
+	for (int i = 0; i < n; i++) {
+		if (a[i] == x) {
+			return i; // Tra ve vi tri dau tien tim thay
+		}
+	}
+	return -1; // Khong tim thay
+}
+
 void menu() {
 	printf("\n--- Menu ---\n");
 	printf("0. Bai 1 Tim cac so x trong day so\n\t 7	9	13	17	27	30	31	35	38	40.\n");
@@ -135,6 +145,17 @@ int main() {
 			break;
 		case 5:
 			demChanLe(a, n);
+			break;
+		case 6:
+			printf("Nhap gia tri x de tim trong mang: ");
+			scanf_s("%d", &x);
+			viTriTuyenTinh = timKiemTuyenTinh(a, n, x);
+			if (viTriTuyenTinh != -1) {
+				printf("Gia tri %d xuat hien tai vi tri %d trong mang.\n", x, viTriTuyenTinh);
+			}
+			else {
+				printf("Gia tri %d khong co trong mang.\n", x);
+			}
 			break;
 		case 12:
 			printf("Thoat chuong trinh.\n");
