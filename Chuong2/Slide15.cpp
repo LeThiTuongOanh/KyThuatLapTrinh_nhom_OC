@@ -132,6 +132,24 @@ int tinhTongMang(int a[], int n) {
 	}
 	return sum;
 }
+
+void ghepMang(int b[], int m, int c[], int n, int a[]) {
+	int i = 0, j = 0, k = 0;
+	while (i < m && j < n) {
+		if (b[i] < c[j]) {
+			a[k++] = b[i++];
+		}
+		else {
+			a[k++] = c[j++];
+		}
+	}
+	while (i < m) {
+		a[k++] = b[i++];
+	}
+	while (j < n) {
+		a[k++] = c[j++];
+	}
+}
 void menu() {
 	printf("\n--- Menu ---\n");
 	printf("0. Bai 1 Tim cac so x trong day so\n\t 7	9	13	17	27	30	31	35	38	40.\n");
@@ -226,6 +244,26 @@ int main() {
 		case 10:
 			Cau8(a, n);
 			break;
+		case 11: {
+					 int m, p;
+					 int b[50], c[50];
+					 printf("Nhap so luong phan tu cua mang b: ");
+					 scanf_s("%d", &m);
+					 printf("Nhap cac phan tu cua mang b (tang dan):\n");
+					 for (int i = 0; i < m; i++) {
+						 scanf_s("%d", &b[i]);
+					 }
+					 printf("Nhap so luong phan tu cua mang c: ");
+					 scanf_s("%d", &p);
+					 printf("Nhap cac phan tu cua mang c (tang dan):\n");
+					 for (int i = 0; i < p; i++) {
+						 scanf_s("%d", &c[i]);
+					 }
+					 ghepMang(b, m, c, p, a);
+					 printf("Mang a sau khi ghep la:\n");
+					 xuatMang(a, m + p);
+					 break;
+		}
 		case 12:
 			printf("Nhap gia tri x can dem: ");
 			scanf_s("%d", &x);
