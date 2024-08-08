@@ -125,6 +125,13 @@ void Cau8(int a[], int n) {
 	}
 	printf("\n");
 }
+int tinhTongMang(int a[], int n) {
+	int sum = 0;
+	for (int i = 0; i < n; i++) {
+		sum += a[i];
+	}
+	return sum;
+}
 void menu() {
 	printf("\n--- Menu ---\n");
 	printf("0. Bai 1 Tim cac so x trong day so\n\t 7	9	13	17	27	30	31	35	38	40.\n");
@@ -140,6 +147,7 @@ void menu() {
 	printf("10. Xuat cac so nguyen to\n");
 	printf("11. Ghep hai mang\n");
 	printf("12. Dem so phan tu x\n");
+	printf("13. Tinh tong cac phan tu trong mang\n");
 	printf("20. Thoat\n");
 }
 int main() {
@@ -222,6 +230,9 @@ int main() {
 			printf("Nhap gia tri x can dem: ");
 			scanf_s("%d", &x);
 			demSoPhanTuX(a, n, x);
+			break;
+		case 13:
+			printf("Tong cac phan tu trong mang la: %d\n", tinhTongMang(a, n));
 			break;
 		case 20:
 			printf("Thoat chuong trinh.\n");
