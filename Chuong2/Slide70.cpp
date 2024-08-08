@@ -45,7 +45,13 @@ void xuat_danh_sach_sinh_vien(SinhVien ds[], int n) {
 		printf("%d\t%s\t%s\t\t%.2f\t\t%.2f\t\t%.2f\n", ds[i].stt, ds[i].ma_so_sv, ds[i].ho_ten, ds[i].diem_tieu_luan, ds[i].diem_thi, ds[i].diem_tong_ket);
 	}
 }
-
+void xuat_danh_sach_sinh_vien_he_4(SinhVien ds[], int n) {
+	printf("Danh sach sinh vien:\n");
+	printf("STT\tMa So\tHo Ten\t\t\tDiem Tieu Luan\tDiem Thi\tDiem Tong Ket\n");
+	for (int i = 0; i < n; i++) {
+		printf("%d\t%s\t%s\t\t%.2f\t\t%.2f\t\t%.2f\n", ds[i].stt, ds[i].ma_so_sv, ds[i].ho_ten, ds[i].diem_tieu_luan, ds[i].diem_thi, ds[i].diem_he_4);
+	}
+}
 void tim_sinh_vien_cao_nhat_thap_nhat(SinhVien ds[], int n) {
 	int cao_nhat_idx = 0, thap_nhat_idx = 0;
 
@@ -81,6 +87,27 @@ void dem_sinh_vien_dat_khong_dat(SinhVien ds[], int n) {
 
 	printf("So sinh vien dat: %d\n", dat);
 	printf("So sinh vien khong dat: %d\n", khong_dat);
+}
+// Hàm tính điểm hệ 4
+void tinh_diem_he_4(SinhVien ds[], int n) {
+	for (int i = 0; i < n; i++) {
+		float diem = ds[i].diem_tong_ket;
+		if (diem >= 8.5) {
+			ds[i].diem_he_4 = 4.0;
+		}
+		else if (diem >= 7.0) {
+			ds[i].diem_he_4 = 3.0;
+		}
+		else if (diem >= 5.5) {
+			ds[i].diem_he_4 = 2.0;
+		}
+		else if (diem >= 4.0) {
+			ds[i].diem_he_4 = 1.0;
+		}
+		else {
+			ds[i].diem_he_4 = 0.0;
+		}
+	}
 }
 
 int main() {
@@ -118,6 +145,10 @@ int main() {
 			break;
 		case 5:
 			dem_sinh_vien_dat_khong_dat(ds, n);
+			break;
+		case 6:
+			tinh_diem_he_4(ds, n);
+			xuat_danh_sach_sinh_vien_he_4(ds, n);
 			break;
 		case 0:
 			printf("Thoat chuong trinh.\n");
