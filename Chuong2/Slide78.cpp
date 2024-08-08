@@ -70,6 +70,18 @@ void lietKeSoHoanThien(int matrix[][MAX_COL], int m, int n) {
 	}
 	printf("\n");
 }
+// Hàm tính tổng các phần tử lớn hơn trị tuyệt đối của phần tử liền sau nó
+int tongLonHonTriTuyetDoiSau(int matrix[][MAX_COL], int m, int n) {
+	int tong = 0;
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n - 1; j++) {
+			if (matrix[i][j] > abs(matrix[i][j + 1])) {
+				tong += matrix[i][j];
+			}
+		}
+	}
+	return tong;
+}
 
 int main() {
 	int matrix[MAX_ROW][MAX_COL];
@@ -80,7 +92,7 @@ int main() {
 	// Nhập các phần tử của ma trận
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
-			matrix[i][j]= (rand()-199)%10+1;
+			matrix[i][j]= (rand()-199)%100;
 		}
 	}
 	for (int i = 0; i < 3; i++) {
@@ -103,7 +115,9 @@ int main() {
 		case 2:
 			lietKeSoHoanThien(matrix, 3, 3);
 			break;
-
+		case 3:
+			printf("Tong cac phan tu lon hon tri tuyet doi cua phan tu lien sau no: %d\n", tongLonHonTriTuyetDoiSau(matrix, 3, 3));
+			break;
 		default:
 			printf("Lua chon khong hop le!\n");
 			break;
