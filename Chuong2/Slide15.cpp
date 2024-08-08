@@ -150,6 +150,25 @@ void ghepMang(int b[], int m, int c[], int n, int a[]) {
 		a[k++] = c[j++];
 	}
 }
+
+int kiemTraHoanThien(int x) {
+	int sum = 0;
+	for (int i = 1; i <= x / 2; i++) {
+		if (x % i == 0) {
+			sum += i;
+		}
+	}
+	return sum == x;
+}
+void xuatSoHoanThien(int a[], int n) {
+	printf("\nCac so hoan thien trong mang: ");
+	for (int i = 0; i < n; i++) {
+		if (kiemTraHoanThien(a[i])) {
+			printf("%d ", a[i]);
+		}
+	}
+	printf("\n");
+}
 void menu() {
 	printf("\n--- Menu ---\n");
 	printf("0. Bai 1 Tim cac so x trong day so\n\t 7	9	13	17	27	30	31	35	38	40.\n");
@@ -166,6 +185,7 @@ void menu() {
 	printf("11. Ghep hai mang\n");
 	printf("12. Dem so phan tu x\n");
 	printf("13. Tinh tong cac phan tu trong mang\n");
+	printf("14. Xuat cac so hoan thien\n");
 	printf("20. Thoat\n");
 }
 int main() {
@@ -271,6 +291,9 @@ int main() {
 			break;
 		case 13:
 			printf("Tong cac phan tu trong mang la: %d\n", tinhTongMang(a, n));
+			break;
+		case 14:
+			xuatSoHoanThien(a, n);
 			break;
 		case 20:
 			printf("Thoat chuong trinh.\n");
