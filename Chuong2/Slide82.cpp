@@ -132,6 +132,27 @@ void timGiaTriXuatHienNhieuNhat(int matrix[][MAX_COL], int m, int n) {
 
 	printf("Gia tri xuat hien nhieu nhat la: %d\n", giaTriMax);
 }
+// Bài 5: Tìm số nguyên tố nhỏ nhất trong ma trận
+void timSoNguyenToNhoNhat(int matrix[][MAX_COL], int m, int n) {
+	int minSoNguyenTo = INT_MAX;
+	bool timThay = false;
+
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			if (laSoNguyenTo(matrix[i][j]) && matrix[i][j] < minSoNguyenTo) {
+				minSoNguyenTo = matrix[i][j];
+				timThay = true;
+			}
+		}
+	}
+
+	if (timThay) {
+		printf("So nguyen to nho nhat la: %d\n", minSoNguyenTo);
+	}
+	else {
+		printf("Khong co so nguyen to trong ma tran.\n");
+	}
+}
 int main() {
 	int matrix[MAX_ROW][MAX_COL];
 	int m, n;
@@ -177,6 +198,10 @@ int main() {
 		case 4:
 			timGiaTriXuatHienNhieuNhat(matrix, m, n);
 			break;
+		case 5:
+			timSoNguyenToNhoNhat(matrix, m, n);
+			break;
+
 		default:
 			printf("Lua chon khong hop le!\n");
 			break;
