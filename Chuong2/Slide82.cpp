@@ -180,6 +180,34 @@ void timPhanTuLonNhatNhoNhatTrongDong(int matrix[][MAX_COL], int m, int n, int k
 	}
 }
 
+// Bài 7: Tìm phần tử lớn (nhỏ) nhất trong cột thứ k
+void timPhanTuLonNhatNhoNhatTrongCot(int matrix[][MAX_COL], int m, int n, int k, bool timLonNhat) {
+	if (k >= 0 && k < n) {
+		int giaTri = matrix[0][k];
+		for (int i = 1; i < m; i++) {
+			if (timLonNhat) {
+				if (matrix[i][k] > giaTri) {
+					giaTri = matrix[i][k];
+				}
+			}
+			else {
+				if (matrix[i][k] < giaTri) {
+					giaTri = matrix[i][k];
+				}
+			}
+		}
+		if (timLonNhat) {
+			printf("Phan tu lon nhat trong cot %d la: %d\n", k, giaTri);
+		}
+		else {
+			printf("Phan tu nho nhat trong cot %d la: %d\n", k, giaTri);
+		}
+	}
+	else {
+		printf("Cot %d khong ton tai.\n", k);
+	}
+}
+
 int main() {
 	int matrix[MAX_ROW][MAX_COL];
 	int m, n;
@@ -239,7 +267,17 @@ int main() {
 				  timPhanTuLonNhatNhoNhatTrongDong(matrix, m, n, k, timLonNhat);
 		}
 			break;
-
+		case 7:
+		{
+				  int k;
+				  bool timLonNhat;
+				  printf("Nhap cot k: ");
+				  scanf_s("%d", &k);
+				  printf("Tim phan tu lon nhat (1) hay nho nhat (0)? ");
+				  scanf_s("%d", &timLonNhat);
+				  timPhanTuLonNhatNhoNhatTrongCot(matrix, m, n, k, timLonNhat);
+		}
+			break;
 		default:
 			printf("Lua chon khong hop le!\n");
 			break;
