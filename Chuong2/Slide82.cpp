@@ -53,6 +53,31 @@ void lietKeCotTongNhoNhat(int matrix[][MAX_COL], int m, int n) {
 	}
 }
 
+// Bài 2: Liệt kê các dòng có nhiều số hoàn thiện nhất trong ma trận
+void lietKeDongNhieuSoHoanThienNhat(int matrix[][MAX_COL], int m, int n) {
+	int soHoanThien[MAX_ROW] = { 0 };
+	int maxSoHoanThien = 0;
+
+	for (int i = 0; i < m; i++) {
+		int dem = 0;
+		for (int j = 0; j < n; j++) {
+			if (laSoHoanThien(matrix[i][j])) {
+				dem++;
+			}
+		}
+		soHoanThien[i] = dem;
+		if (dem > maxSoHoanThien) {
+			maxSoHoanThien = dem;
+		}
+	}
+
+	printf("Cac dong co nhieu so hoan thien nhat:\n");
+	for (int i = 0; i < m; i++) {
+		if (soHoanThien[i] == maxSoHoanThien) {
+			printf("Dong %d\n", i);
+		}
+	}
+}
 
 int main() {
 	int matrix[MAX_ROW][MAX_COL];
@@ -90,7 +115,9 @@ int main() {
 		case 1:
 			lietKeCotTongNhoNhat(matrix, m, n);
 			break;
-
+		case 2:
+			lietKeDongNhieuSoHoanThienNhat(matrix, m, n);
+			break;
 		
 		default:
 			printf("Lua chon khong hop le!\n");
