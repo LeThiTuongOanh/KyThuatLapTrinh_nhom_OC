@@ -47,6 +47,24 @@ void taoMangNgauNhien(int a[20], int n) {
         a[i] = rand() % 100; // sinh so ngau nhien tu 0 den 99
     }
 }
+// Tim vi tri cuoi cung cua gia tri lon nhat
+int viTriLonNhatCuoiCung(int arr[], int n) {
+    int maxVal = arr[0], maxIndex = 0;
+    for (int i = 1; i < n; i++) {
+        if (arr[i] >= maxVal) {
+            maxVal = arr[i];
+            maxIndex = i;
+        }
+    }
+    return maxIndex;
+}
+// Kiem tra tat ca cac phan tu deu la so chan
+int tatCaLaChan(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] % 2 != 0) return 0;
+    }
+    return 1;
+}
 int main() {
     int arr[20] = {11,33,25,24,35,30}; // Mang vi du
     int n = 6;
@@ -76,7 +94,17 @@ int main() {
             }
             printf("\n");
             break;
-
+        case 3:
+            printf("Vi tri so lon nhat cuoi cung trong mang: %d\n", viTriLonNhatCuoiCung(arr, n));
+            break;
+        case 4:
+            if (tatCaLaChan(arr, n)) {
+                printf("Tat ca cac phan tu trong mang deu la so chan.\n");
+            }
+            else {
+                printf("Khong phai tat ca cac phan tu trong mang deu la so chan.\n");
+            }
+            break;
         case 0:
             printf("Thoat chuong trinh.\n");
             break;
