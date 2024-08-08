@@ -78,6 +78,26 @@ int timKiemTuyenTinh(int a[], int n, int x) {
 	}
 	return -1; // Khong tim thay
 }
+void sapXepMang(int a[], int n) {
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = i + 1; j < n; j++) {
+			if (a[i] > a[j]) {
+				int temp = a[i];
+				a[i] = a[j];
+				a[j] = temp;
+			}
+		}
+	}
+}
+void demSoPhanTuX(int a[], int n, int x) {
+	int count = 0;
+	for (int i = 0; i < n; i++) {
+		if (a[i] == x) {
+			count++;
+		}
+	}
+	printf("So phan tu co gia tri %d trong mang la: %d\n", x, count);
+}
 
 void menu() {
 	printf("\n--- Menu ---\n");
@@ -93,7 +113,8 @@ void menu() {
 	printf("9. Dem so phan tu lon hon x\n");
 	printf("10. Xuat cac so nguyen to\n");
 	printf("11. Ghep hai mang\n");
-	printf("12. Thoat\n");
+	printf("12. Dem so phan tu x\n");
+	printf("20. Thoat\n");
 }
 int main() {
 	menu();
@@ -157,7 +178,17 @@ int main() {
 				printf("Gia tri %d khong co trong mang.\n", x);
 			}
 			break;
+		case 7:
+			sapXepMang(a, n);
+			printf("Mang sau khi sap xep: ");
+			xuatMang(a, n);
+			break;
 		case 12:
+			printf("Nhap gia tri x can dem: ");
+			scanf_s("%d", &x);
+			demSoPhanTuX(a, n, x);
+			break;
+		case 20:
 			printf("Thoat chuong trinh.\n");
 			break;
 		default:
@@ -165,6 +196,7 @@ int main() {
 			break;
 		}
 	} while (choice != 12);
-
+	getchar();
+	getchar();
 	return 0;
 }
