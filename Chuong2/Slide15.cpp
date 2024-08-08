@@ -98,6 +98,14 @@ void demSoPhanTuX(int a[], int n, int x) {
 	}
 	printf("So phan tu co gia tri %d trong mang la: %d\n", x, count);
 }
+void Cau6(int a[], int n, int x) {
+	int count = 0;
+	for (int i = 0; i < n; i++) {
+		if (a[i] > x)
+			count++;
+	}
+	printf("So phan tu lon hon %d la %d\n", x, count);
+}
 
 void menu() {
 	printf("\n--- Menu ---\n");
@@ -182,6 +190,11 @@ int main() {
 			sapXepMang(a, n);
 			printf("Mang sau khi sap xep: ");
 			xuatMang(a, n);
+			break;
+		case 9:
+			printf("Nhap vao gia tri x: ");
+			scanf_s("%d", &x);
+			Cau6(a, n, x);
 			break;
 		case 12:
 			printf("Nhap gia tri x can dem: ");
