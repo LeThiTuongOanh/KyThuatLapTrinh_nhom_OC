@@ -109,10 +109,19 @@ void tinh_diem_he_4(SinhVien ds[], int n) {
 		}
 	}
 }
-
-int main() {
-	SinhVien ds[MAX_STUDENTS];
-	int n, lua_chon;
+// Hàm sắp xếp danh sách sinh viên theo điểm tổng kết
+void sap_xep_danh_sach(SinhVien ds[], int n, int tang) {
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = i + 1; j < n; j++) {
+			if ((tang && ds[i].diem_tong_ket > ds[j].diem_tong_ket) || (!tang && ds[i].diem_tong_ket < ds[j].diem_tong_ket)) {
+				SinhVien temp = ds[i];
+				ds[i] = ds[j];
+				ds[j] = temp;
+			}
+		}
+	}
+}
+void menu() {
 	printf("----------MeNu------------\n");
 	printf("1. Nhap danh sach sinh vien\n");
 	printf("2. Xuat danh sach sinh vien\n");
@@ -124,6 +133,11 @@ int main() {
 	printf("8. Tinh diem trung binh\n");
 	printf("9. Ghi danh sach sinh vien vao file\n");
 	printf("0. Thoat\n");
+}
+int main() {
+	SinhVien ds[MAX_STUDENTS];
+	int n, lua_chon;
+	menu();
 	do {
 
 		printf("Nhap lua chon: ");
@@ -149,6 +163,13 @@ int main() {
 		case 6:
 			tinh_diem_he_4(ds, n);
 			xuat_danh_sach_sinh_vien_he_4(ds, n);
+			break;
+		case 7:
+			printf("1. Sap xep tang dan\n2. Sap xep giam dan\nNhap lua chon: ");
+			int tang;
+			scanf_s("%d", &tang);
+			sap_xep_danh_sach(ds, n, tang == 1);
+			xuat_danh_sach_sinh_vien(ds, n);
 			break;
 		case 0:
 			printf("Thoat chuong trinh.\n");
