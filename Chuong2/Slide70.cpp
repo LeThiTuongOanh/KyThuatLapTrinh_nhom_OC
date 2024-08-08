@@ -46,6 +46,26 @@ void xuat_danh_sach_sinh_vien(SinhVien ds[], int n) {
 	}
 }
 
+void tim_sinh_vien_cao_nhat_thap_nhat(SinhVien ds[], int n) {
+	int cao_nhat_idx = 0, thap_nhat_idx = 0;
+
+	for (int i = 1; i < n; i++) {
+		if (ds[i].diem_tong_ket > ds[cao_nhat_idx].diem_tong_ket) {
+			cao_nhat_idx = i;
+		}
+		if (ds[i].diem_tong_ket < ds[thap_nhat_idx].diem_tong_ket) {
+			thap_nhat_idx = i;
+		}
+	}
+
+	printf("Sinh vien co diem tong ket cao nhat:\n");
+	printf("STT: %d\nMa so: %s\nHo ten: %s\nDiem tong ket: %.2f\n",
+		ds[cao_nhat_idx].stt, ds[cao_nhat_idx].ma_so_sv, ds[cao_nhat_idx].ho_ten, ds[cao_nhat_idx].diem_tong_ket);
+
+	printf("Sinh vien co diem tong ket thap nhat:\n");
+	printf("STT: %d\nMa so: %s\nHo ten: %s\nDiem tong ket: %.2f\n",
+		ds[thap_nhat_idx].stt, ds[thap_nhat_idx].ma_so_sv, ds[thap_nhat_idx].ho_ten, ds[thap_nhat_idx].diem_tong_ket);
+}
 int main() {
 	SinhVien ds[MAX_STUDENTS];
 	int n, lua_chon;
@@ -70,7 +90,14 @@ int main() {
 			nhap_danh_sach_sinh_vien(ds, &n);
 			break;
 		case 2:
+
 			xuat_danh_sach_sinh_vien(ds, n);
+			break;
+		case 3:
+			printf("Diem tong ket da duoc tinh trong qua trinh nhap du lieu.\n");
+			break;
+		case 4:
+			tim_sinh_vien_cao_nhat_thap_nhat(ds, n);
 			break;
 		case 0:
 			printf("Thoat chuong trinh.\n");
