@@ -48,6 +48,15 @@ PhanSo timPhanSoMax(PhanSo ds[], int n) {
 	}
 	return max;
 }
+PhanSo timPhanSoMin(PhanSo ds[], int n) {
+	PhanSo min = ds[0];
+	for (int i = 1; i < n; i++) {
+		if (giaTri(ds[i]) < giaTri(min)) {
+			min = ds[i];
+		}
+	}
+	return min;
+}
 int main() {
 	int n;
 	PhanSo ds[50];
@@ -94,7 +103,15 @@ int main() {
 			}
 			break;
 
-		
+		case 4:
+			if (n > 0) {
+				PhanSo min = timPhanSoMin(ds, n);
+				printf("Phan so nho nhat: %d/%d\n", min.tu, min.mau);
+			}
+			else {
+				printf("Danh sach rong.\n");
+			}
+			break;
 		case 0:
 			printf("Thoat chuong trinh.\n");
 			break;
