@@ -66,6 +66,14 @@ void xuatSinhVien(const SinhVien *sv) {
 	}
 	printf("Diem trung binh tich luy: %.2f\n", sv->diemTrungBinhTichLuy);
 }
+int timSinhVien(const SinhVien ds[], int n, const char *maSoSv) {
+	for (int i = 0; i < n; i++) {
+		if (strcmp(ds[i].maSoSv, maSoSv) == 0) {
+			return i;
+		}
+	}
+	return -1;  // Không tìm thấy
+}
 
 int main() {
 	SinhVien ds[MAX_SINH_VIEN];
@@ -104,7 +112,19 @@ int main() {
 				printf("\n");
 			}
 			break;
-	
+		case 3: {
+					char maSoSv[10];
+					printf("Nhap ma so sinh vien can tim: ");
+					scanf_s("%s", maSoSv, sizeof(maSoSv));
+					int idx = timSinhVien(ds, n, maSoSv);
+					if (idx != -1) {
+						xuatSinhVien(&ds[idx]);
+					}
+					else {
+						printf("Khong tim thay sinh vien.\n");
+					}
+					break;
+		}
 		case 0:
 			printf("Thoat chuong trinh.\n");
 			break;
