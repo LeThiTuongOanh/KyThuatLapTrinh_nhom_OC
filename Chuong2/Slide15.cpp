@@ -107,6 +107,24 @@ void Cau6(int a[], int n, int x) {
 	printf("So phan tu lon hon %d la %d\n", x, count);
 }
 
+int kiemTraNguyenTo(int x) {
+	if (x < 2) return 0;
+	for (int i = 2; i <= x / 2; i++) {
+		if (x % i == 0)
+			return 0;
+	}
+	return 1;
+}
+
+void Cau8(int a[], int n) {
+	printf("\nSo nguyen to trong mang: ");
+	for (int i = 0; i < n; i++) {
+		if (kiemTraNguyenTo(a[i])) {
+			printf("%d ", a[i]);
+		}
+	}
+	printf("\n");
+}
 void menu() {
 	printf("\n--- Menu ---\n");
 	printf("0. Bai 1 Tim cac so x trong day so\n\t 7	9	13	17	27	30	31	35	38	40.\n");
@@ -191,10 +209,14 @@ int main() {
 			printf("Mang sau khi sap xep: ");
 			xuatMang(a, n);
 			break;
+
 		case 9:
 			printf("Nhap vao gia tri x: ");
 			scanf_s("%d", &x);
 			Cau6(a, n, x);
+			break;
+		case 10:
+			Cau8(a, n);
 			break;
 		case 12:
 			printf("Nhap gia tri x can dem: ");
