@@ -48,7 +48,20 @@ void xoa_khoang_trang_thua(char* s) {
 	}
 	*dst = '\0';
 }
-
+void chuyen_hoa_chu_cai_dau_tu(char *s) {
+	int la_bat_dau = 1;
+	while (*s) {
+		if (la_bat_dau) {
+			*s = toupper(*s);
+			la_bat_dau = 0;
+		}
+		else {
+			*s = tolower(*s);
+		}
+		if (*s == ' ') la_bat_dau = 1;
+		s++;
+	}
+}
 int main() {
 	int lua_chon;
 	printf("----------MeNu------------ :\n");
@@ -99,6 +112,17 @@ int main() {
 					printf("Chuoi sau khi xoa khoang trang thua: %s\n", s);
 					break;
 		}
+		case 4: {
+					char ho_ten[100];
+					printf("Nhap chuoi ho ten: ");
+					while (getchar() != '\n');
+					fgets(ho_ten, sizeof(ho_ten), stdin);
+					ho_ten[strcspn(ho_ten, "\n")] = '\0';
+					chuyen_hoa_chu_cai_dau_tu(ho_ten);
+					printf("Chuoi sau khi chuyen doi: %s\n", ho_ten);
+					break;
+		}
+
 		default:
 			printf("Lua chon khong hop le!\n");
 			break;
