@@ -26,6 +26,29 @@ int demKhoangTrang(const char *s)
 	return count;
 }
 
+
+
+
+void xoa_khoang_trang_thua(char* s) {
+	char* dst = s;
+	int space_found = 0;
+
+	while (*s) {
+		if (*s == ' ') {
+			if (!space_found) {
+				*dst++ = *s;
+				space_found = 1;
+			}
+		}
+		else {
+			*dst++ = *s;
+			space_found = 0;
+		}
+		s++;
+	}
+	*dst = '\0';
+}
+
 int main() {
 	int lua_chon;
 	printf("----------MeNu------------ :\n");
@@ -64,6 +87,16 @@ int main() {
 					printf("Nhap chuoi can kiem tra: ");
 					scanf_s(" %[^\n]", s, sizeof(s));  // Đọc chuỗi có khoảng trắng
 					printf("So khoang trang trong chuoi la: %d", demKhoangTrang(s));
+					break;
+		}
+		case 3: {
+					char s[100];
+					printf("Nhap chuoi can xoa khoang trang thua: ");
+					while (getchar() != '\n');
+					fgets(s, sizeof(s), stdin);
+					s[strcspn(s, "\n")] = '\0';
+					xoa_khoang_trang_thua(s);
+					printf("Chuoi sau khi xoa khoang trang thua: %s\n", s);
 					break;
 		}
 		default:
