@@ -101,6 +101,18 @@ void cat_ho_lot_ten(const char* ho_ten, char* ho, char* lot, char* ten) {
 	}
 }
 
+void chen_chuoi_tai_vi_tri(char* s, const char* chuoi_chen, int vi_tri) {
+	int len_s = strlen(s);
+	int len_chen = strlen(chuoi_chen);
+
+	if (vi_tri < 0 || vi_tri > len_s) {
+		printf("Vi tri chen khong hop le.\n");
+		return;
+	}
+
+	memmove(s + vi_tri + len_chen, s + vi_tri, len_s - vi_tri + 1);
+	memcpy(s + vi_tri, chuoi_chen, len_chen);
+}
 int main() {
 	int lua_chon;
 	printf("----------MeNu------------ :\n");
@@ -181,6 +193,22 @@ int main() {
 					printf("Ho: %s\n", ho);
 					printf("Lot: %s\n", lot);
 					printf("Ten: %s\n", ten);
+					break;
+		}
+		case 7: {
+					char s[100], chuoi_chen[50];
+					int vi_tri;
+					printf("Nhap chuoi ban dau: ");
+					while (getchar() != '\n');
+					fgets(s, sizeof(s), stdin);
+					s[strcspn(s, "\n")] = '\0';
+					printf("Nhap chuoi can chen: ");
+					fgets(chuoi_chen, sizeof(chuoi_chen), stdin);
+					chuoi_chen[strcspn(chuoi_chen, "\n")] = '\0';
+					printf("Nhap vi tri chen: ");
+					scanf_s("%d", &vi_tri);
+					chen_chuoi_tai_vi_tri(s, chuoi_chen, vi_tri);
+					printf("Chuoi sau khi chen: %s\n", s);
 					break;
 		}
 		default:
