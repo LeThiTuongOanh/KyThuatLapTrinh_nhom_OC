@@ -113,6 +113,35 @@ void chen_chuoi_tai_vi_tri(char* s, const char* chuoi_chen, int vi_tri) {
 	memmove(s + vi_tri + len_chen, s + vi_tri, len_s - vi_tri + 1);
 	memcpy(s + vi_tri, chuoi_chen, len_chen);
 }
+
+// Hàm xóa một chuỗi con từ chuỗi ban đầu
+void xoa_chuoi_con(char *chuoi, const char *chuoi_con) {
+	char *vi_tri = strstr(chuoi, chuoi_con);
+	int len_chuoi_con = strlen(chuoi_con);
+
+	if (vi_tri) {
+		memmove(vi_tri, vi_tri + len_chuoi_con, strlen(vi_tri + len_chuoi_con) + 1);
+
+		// Xóa khoảng trắng dư thừa nếu có
+		int len_chuoi = strlen(chuoi);
+		for (int i = 0; i < len_chuoi; i++) {
+			if (chuoi[i] == ' ' && (i == 0 || chuoi[i + 1] == ' ' || chuoi[i + 1] == '\0')) {
+				memmove(&chuoi[i], &chuoi[i + 1], len_chuoi - i);
+				i--;
+				len_chuoi--;
+			}
+		}
+
+		// Xóa khoảng trắng cuối chuỗi nếu có
+		if (len_chuoi > 0 && chuoi[len_chuoi - 1] == ' ') {
+			chuoi[len_chuoi - 1] = '\0';
+		}
+	}
+	else {
+		printf("Chuoi con '%s' khong ton tai trong chuoi ban dau.\n", chuoi_con);
+	}
+}
+
 int main() {
 	int lua_chon;
 	printf("----------MeNu------------ :\n");
@@ -210,6 +239,17 @@ int main() {
 					chen_chuoi_tai_vi_tri(s, chuoi_chen, vi_tri);
 					printf("Chuoi sau khi chen: %s\n", s);
 					break;
+		}
+		case 8:
+		{
+				  char s[100], s2[30];
+				  printf("Nhap chuoi ban dau: ");
+				  scanf_s(" %[^\n]", s, sizeof(s));
+				  printf("Nhap chuoi can xoa : ");
+				  scanf_s(" %[^\n]", s2, sizeof(s2));
+				  xoa_chuoi_con(s, s2);
+				  printf("Chuoi sau khi xoa: %s\n", s);
+				  break;
 		}
 		default:
 			printf("Lua chon khong hop le!\n");
