@@ -14,7 +14,14 @@ int tongDuongCheoChinh(int matrix[][MAX_SIZE], int n) {
 	return tong;
 }
 
-
+// Hàm tính tổng các phần tử nằm trên đường chéo phụ
+int tongDuongCheoPhu(int matrix[][MAX_SIZE], int n) {
+	int tong = 0;
+	for (int i = 0; i < n; i++) {
+		tong += matrix[i][n - 1 - i];
+	}
+	return tong;
+}
 void menu() {
 	printf("================== Menu ====================\n");
 	printf("1.Tong cac phan tu nam tren duong cheo chinh\n");
@@ -54,7 +61,9 @@ int main() {
 			case 1:
 				printf("Tong cac phan tu nam tren duong cheo chinh: %d\n", tongDuongCheoChinh(matrix, 5));
 				break;
-
+			case 2:
+				printf("Tong cac phan tu nam tren duong cheo phu: %d\n", tongDuongCheoPhu(matrix, 5));
+				break;
 			case 0:
 				break;
 			default:
