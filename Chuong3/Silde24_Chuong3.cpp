@@ -12,6 +12,19 @@ int kiem_tra_chuoi_ky_so(const char *s) {
 	return 1;  // Trả về 1 nếu toàn ký số
 }
 
+int demKhoangTrang(const char *s)
+{
+	int count = 0;
+	while (*s)
+	{
+		if (*s == ' ')
+		{
+			count++;
+		}
+		s++;
+	}
+	return count;
+}
 
 int main() {
 	int lua_chon;
@@ -45,7 +58,14 @@ int main() {
 		}
 
 
-	
+
+		case 2: {
+					char s[100];
+					printf("Nhap chuoi can kiem tra: ");
+					scanf_s(" %[^\n]", s, sizeof(s));  // Đọc chuỗi có khoảng trắng
+					printf("So khoang trang trong chuoi la: %d", demKhoangTrang(s));
+					break;
+		}
 		default:
 			printf("Lua chon khong hop le!\n");
 			break;
