@@ -86,6 +86,12 @@ double S6_khuDeQuy(int n) {
     }
     return sum;
 }
+// Hàm đệ quy tính S7(n) = 1^2 + 2^2 + ... + n^2
+int S7_DQ(int n) {
+    if (n == 1) return 1;
+    return n * n + S7_DQ(n - 1);
+}
+
 
 void menu() {
     printf("\nMenu:\n");
@@ -142,6 +148,9 @@ int main() {
             break;
         case 6:
             printf("Gia tri cua S6(%d) = %lf (de quy) va (khu de quy) = %lf \n", n, S6_DQ(n), S6_khuDeQuy(n));
+            break;
+        case 7:
+            printf("Gia tri cua S7(%d) = %d (de quy)\n", n, S7_DQ(n));
             break;
         }
        
