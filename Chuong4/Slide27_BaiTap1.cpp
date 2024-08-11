@@ -42,6 +42,20 @@ double S3_khuDeQuy(int n) {
     }
     return sum;
 }
+// Hàm đệ quy tính S4(n) = 1 + 1/3 + 1/5 + ... + 1/(2n+1)
+double S4_DQ(int n) {
+    if (n == 0 ) return 1;
+    return 1.0 / (2 * n + 1) + S4_DQ( n - 1);
+}
+
+// Hàm khử đệ quy tính S4(n) = 1 + 1/3 + 1/5 + ... + 1/(2n+1)
+double S4_khuDeQuy(int n) {
+    double sum = 0.0;
+    for (int i = 0; i <= n; i++) {
+        sum += 1.0 / (2 * i + 1);
+    }
+    return sum;
+}
 void menu() {
     printf("\nMenu:\n");
     printf("1. Tinh S1(n) = 1 + 2 + 3 + ... + n\n");
@@ -89,6 +103,10 @@ int main() {
         case 3:
             printf("Gia tri cua S3(%d) = %lf (de quy) va (khu de quy) = %lf \n", n, S3_DQ(n), S3_khuDeQuy(n));
             break;
+        case 4:
+            printf("Gia tri cua S4(%d) = %lf (de quy) va (khu de quy) = %lf \n", n, S4_DQ(n), S4_khuDeQuy(n));
+            break;
+
         }
        
         printf("\nNhan Enter de tiep tuc...");
