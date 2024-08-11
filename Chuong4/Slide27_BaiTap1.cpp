@@ -91,7 +91,12 @@ int S7_DQ(int n) {
     if (n == 1) return 1;
     return n * n + S7_DQ(n - 1);
 }
+// Hàm đệ quy tính S8(n) = 1 + (1+2) + (1+2+3) + ... + (1+2+3+...+n)
 
+int S8_DQ(int n) {
+    if (n==1) return 1;
+    return S1_DQ(n) + S8_DQ(n-1);
+}
 
 void menu() {
     printf("\nMenu:\n");
@@ -152,6 +157,10 @@ int main() {
         case 7:
             printf("Gia tri cua S7(%d) = %d (de quy)\n", n, S7_DQ(n));
             break;
+        case 8:
+            printf("Gia tri cua S8(%d) = %d (de quy)  \n", n, S8_DQ(n));
+            break;
+  
         }
        
         printf("\nNhan Enter de tiep tuc...");
