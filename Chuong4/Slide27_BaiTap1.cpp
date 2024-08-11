@@ -72,6 +72,21 @@ int S5_khuDeQuy(int n) {
     return sum;
 }
 
+// Hàm đệ quy tính S6(n) = 1/(1*2*3) + 1/(2*3*4) + ... + 1/(n*(n+1)*(n+2))
+double S6_DQ(int n) {
+    if (n == 1) return 1.0 / (1 * 2 * 3);
+    return 1.0 / (n * (n + 1) * (n + 2)) + S6_DQ(n - 1);
+}
+
+// Hàm khử đệ quy tính S6(n) = 1/(1*2*3) + 1/(2*3*4) + ... + 1/(n*(n+1)*(n+2))
+double S6_khuDeQuy(int n) {
+    double sum = 0.0;
+    for (int i = 1; i <= n; i++) {
+        sum += 1.0 / (i * (i + 1) * (i + 2));
+    }
+    return sum;
+}
+
 void menu() {
     printf("\nMenu:\n");
     printf("1. Tinh S1(n) = 1 + 2 + 3 + ... + n\n");
@@ -124,6 +139,9 @@ int main() {
             break;
         case 5:
             printf("Gia tri cua S5(%d) = %d (de quy) va (khu de quy)= %d \n", n, S5_DQ(n), S5_khuDeQuy(n));
+            break;
+        case 6:
+            printf("Gia tri cua S6(%d) = %lf (de quy) va (khu de quy) = %lf \n", n, S6_DQ(n), S6_khuDeQuy(n));
             break;
         }
        
