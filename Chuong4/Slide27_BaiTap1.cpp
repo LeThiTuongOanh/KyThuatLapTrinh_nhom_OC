@@ -14,11 +14,24 @@ int S1_khuDeQuy(int n) {
     return (n * (n + 1)) / 2;
 }
 
+// Hàm đệ quy tính S2(n) = CanBac2(2 + CanBac2(2 + ... + CanBac2(2)))
+double S2_DQ(int n) {
+    if (n == 1) return sqrt(2);
+    return sqrt(2 + S2_DQ(n - 1));
+}
 
+// Hàm khử đệ quy tính S2(n) = CanBac2(2 + CanBac2(2 + ... + CanBac2(2)))
+double S2_khuDeQuy(int n) {
+    double result = 0;
+    for (int i = 1; i < n; i++) {
+        result = sqrt(2 + result);
+    }
+    return result;
+}
 void menu() {
     printf("\nMenu:\n");
     printf("1. Tinh S1(n) = 1 + 2 + 3 + ... + n\n");
-    printf("2. Tinh S2(n) = CanBac2(2+CanBac2(2+….+CanBac2(2 + CanBac2(2))))\n");
+    printf("2. Tinh S2(n) = sqrt(2+sqrt(2+….+sqrt(2 + sqrt(2))))\n");
     printf("3. Tinh S3(n) = 1/2 + 2/3 + ... + n/(n+1)\n");
     printf("4. Tinh S4(n) = 1 + 1/3 + 1/5 +... + 1/(2n+1)\n");
     printf("5. Tinh S5(n) = 1*2 + 2*3 + 3*4 + 4*5 + ... + n*(n+1)\n");
@@ -31,10 +44,11 @@ void menu() {
     printf("0. Thoat\n");
 }
 int main() {
-    menu();
+    
     int choice, n;
     while (1) {
         system("cls");
+        menu();
         printf("Nhap lua chon cua ban (0-11): ");
         scanf_s("%d", &choice);
 
@@ -55,7 +69,9 @@ int main() {
         case 1:
             printf("Gia tri cua S1(%d) = %d (de quy) va (khu de quy) = %d \n", n, S1_DQ(n), S1_khuDeQuy(n));
             break;
-       
+        case 2:
+            printf("Gia tri cua S2(%d) = %lf (de quy) va (khu de quy) = %lf\n", n, S2_DQ(n), S2_khuDeQuy(n));
+            break;
         }
         printf("\nNhan Enter de tiep tuc...");
         getchar();
